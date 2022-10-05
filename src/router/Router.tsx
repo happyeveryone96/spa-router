@@ -7,7 +7,9 @@ interface RouterProp {
 
 function Router({ children }: RouterProp) {
   const path = window.location.pathname;
-  const currentRoute = children.filter((child) => child.props.path === path)[0];
+  const currentElement = children.filter(
+    (child) => child.props.path === path
+  )[0];
 
   const [_, setCurrentPath] = useState(path);
   useEffect(() => {
@@ -22,8 +24,8 @@ function Router({ children }: RouterProp) {
     };
   }, []);
 
-  if (currentRoute === undefined) return <NotFound />;
-  else return currentRoute;
+  if (currentElement === undefined) return <NotFound />;
+  else return currentElement;
 }
 
 export default Router;
