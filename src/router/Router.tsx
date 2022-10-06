@@ -11,18 +11,17 @@ function Router({ children }: RouterProp) {
     (child) => child.props.path === path
   )[0];
 
-  const [_, setCurrentPath] = useState(path);
+  const [currentPath, setCurrentPath] = useState(path);
   useEffect(() => {
     const onLocationChange = () => {
       setCurrentPath(window.location.pathname);
     };
-
     window.addEventListener("popstate", onLocationChange);
 
     return () => {
       window.removeEventListener("popstate", onLocationChange);
     };
-  }, []);
+  }, [currentPath]);
 
   if (currentElement === undefined) return <NotFound />;
   else return currentElement;
