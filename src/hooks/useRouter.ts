@@ -1,6 +1,6 @@
 function useRouter() {
   const push = (path: string) => {
-    history.pushState({ path }, "", path);
+    history.pushState(null, "", path);
     const popStateEvent = new PopStateEvent("popstate");
     window.dispatchEvent(popStateEvent);
   };
